@@ -1,0 +1,13 @@
+Test Node
+	Photography	
+		Stock
+		Professional
+		Community
+		Social Media 
+		Event
+	Renderings	
+		Exterior
+		Interior 
+	Ad Artwork	
+		Digital
+		Print

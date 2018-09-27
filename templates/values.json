@@ -1,0 +1,32 @@
+[
+  {
+    "Id": "MetaDataUpdate0",
+    "FieldId": "MetaDataUpdate0",
+    "ContainerType": 1,
+    "RowId": 1,
+    "Values": [
+      {
+        "FieldId": "showcheck",
+        "Type": 2,
+        "Values": [
+          true
+        ]
+      },
+      {
+        "FieldId": "ispublic",
+        "Type": 2,
+        "Values": [
+          true
+        ]
+      },
+      {
+        "FieldId": "visible",
+        "Type": 2,
+        "Values": [
+          true
+        ]
+      }
+    ],
+    "BaseId": 0
+  }
+]

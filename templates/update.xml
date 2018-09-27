@@ -1,0 +1,12 @@
+<r>
+	<metatree_definition fieldId="MetaDataUpdate0">
+	<item_metafield_labelid fieldId="item_metafield_labelid"/>
+	<prevref fieldId="prevref"/>
+	<sortindex fieldId="sortindex"/>
+	<treevalue fieldId="treevalue"/>
+	<optionvalue fieldId="optionvalue"/>
+	<showcheck fieldId="showcheck"/>
+	<ispublic fieldId="ispublic"/>
+	<visible fieldId="visible"/>
+	</metatree_definition>
+</r>
