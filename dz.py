@@ -58,6 +58,30 @@ class Client(object):
             return False
 
 
+    def getAssets(self, accesskey=None):
+        url = urljoin(self.BASE_URL, 'dmm3bwsv3/SearchService.js')
+
+        # If caller didn't pass in an access key, try to get one
+        if accesskey is None:
+            accesskey = self.GetConnectionAccessKey()
+            if accesskey is False:
+                return False
+
+        # Create requests payload dictionary
+        payload = {'SearchName': 'GetAssets', 'accessKey': accesskey}
+
+        # Make POST request, passing accesskey as a query param and other payload as form encoded
+        r = requests.request("POST", url, data=payload)
+        res = r.json()
+
+        # Return creeated term's ID if successful
+        if res['success']:
+            return res
+        else:
+            return False
+
+
+
     def createTerm(self, field, term, parent=[0], accesskey=None):
         url = urljoin(self.BASE_URL, 'apiproxy/BatchUpdateService.js')
 
