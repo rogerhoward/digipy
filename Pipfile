@@ -8,6 +8,8 @@ requests = "*"
 click = "*"
 pip = "*"
 pyinstaller = "*"
+watchdog = "*"
+simplejson = "*"
 
 [dev-packages]
 

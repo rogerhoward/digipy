@@ -82,6 +82,83 @@ class Client(object):
 
 
 
+    def getAssetURL(self, assetid, accesskey=None):
+
+        print('getAssetURL', assetid )
+        url = urljoin(self.BASE_URL, 'dmm3bwsv3/SearchService.js')
+
+        # If caller didn't pass in an access key, try to get one
+        if accesskey is None:
+            accesskey = self.GetConnectionAccessKey()
+            if accesskey is False:
+                return False
+
+        # Create requests payload dictionary
+        payload = {'SearchName': 'GetAssets', 'accessKey': accesskey, 'sAssetId': assetid}
+
+        # Make POST request, passing accesskey as a query param and other payload as form encoded
+        r = requests.request("GET", url, params=payload)
+        res = r.json()
+
+        # Return creeated term's ID if successful
+        if res['success']:
+            for item in res['items']:
+                
+                # print('-------')
+                # print(assetid)
+                # print(item['displayitemId'])
+                # print('-------')
+                if item['assetId'] == str(assetid):
+                    print(item)
+                    return item['displayitemId'], item['imagePreview']
+            return False
+        else:
+            return False
+
+    def setKeywords(self, assetid, fieldid, values, accesskey=None):
+        url = urljoin(self.BASE_URL, 'apiproxy/BatchUpdateService.js')
+
+        # If caller didn't pass in an access key, try to get one
+        if accesskey is None:
+            accesskey = self.GetConnectionAccessKey()
+            if accesskey is False:
+                return False
+
+        # Read in basic structure of "values" payload
+        with open('templates/keywords.json') as json_file:
+            payload_values = json.load(json_file)
+            payload_values[0]['Values'] = [{"FieldId": 'Container1Field1'.format(fieldid), "Type": 17, "Values": values}]
+            payload_values[0]['ItemIds'] = [str(assetid)]
+
+        print("---------------")
+        print(payload_values)
+        print("---------------")
+
+        # Read in XML contents for "updateXML" payload
+        with open("templates/keywords.xml") as xml_file:  
+            payload_xml = xml_file.read()
+
+        payload_xml = payload_xml.replace('FIELDID', fieldid)
+        print(payload_xml)        
+        print("---------------")
+
+        # Create requests payload dictionary
+        payload = {'updateXML': payload_xml, 'values': json.dumps(payload_values)}
+
+
+        # Make POST request, passing accesskey as a query param and other payload as form encoded
+        r = requests.request("POST", url, data=payload, params={'accesskey':accesskey})
+        res = r.json()
+        print(res)
+
+        # Return creeated term's ID if successful
+        if res['success']:
+            return True
+        else:
+            return False
+
+
+
     def createTerm(self, field, term, parent=[0], accesskey=None):
         url = urljoin(self.BASE_URL, 'apiproxy/BatchUpdateService.js')
 
