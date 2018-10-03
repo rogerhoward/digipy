@@ -5,7 +5,7 @@ import simplejson as json
 import base64
 from io import BytesIO
 
-DEBUG = False
+DEBUG = True
 
 class GoogleVision(object):
 

@@ -13,7 +13,7 @@ from watchdog.observers import Observer
 from watchdog.events import LoggingEventHandler, FileSystemEventHandler
 import os
 import click
-import gv
+import pdf
 import dz
 
 GOOGLE_VISION_API_KEY = 'AIzaSyAeQkvtT0VhSubV6O7Kb1_OlCHkGL-MaUY'
@@ -50,7 +50,7 @@ class Handler(FileSystemEventHandler):
     def check_name(self, path):
         # basename = os.path.splitext(os.path.basename(path))[0]
         # if basename.endswith('_2'):
-        if path.endswith('_2.jpg'):
+        if path.endswith('_.pdf'):
             return True
         else:
             return False
@@ -74,11 +74,10 @@ class Handler(FileSystemEventHandler):
             displayid, asseturl = DZ_CLIENT.getAssetURL(assetid)
             print(asseturl)
 
-            c = gv.GoogleVision(GOOGLE_VISION_API_KEY, asseturl)
-            kw = c.keywords()
-            print(kw)
+            text = pdf.getPDFText(event.src_path)
+            print(text)
 
-            DZ_CLIENT.setKeywords(displayid, '10438', kw)
+            DZ_CLIENT.setIndexText(displayid, '51619', text)
 
 
 

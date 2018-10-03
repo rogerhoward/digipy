@@ -10,6 +10,7 @@ pip = "*"
 pyinstaller = "*"
 watchdog = "*"
 simplejson = "*"
+"pypdf2" = "*"
 
 [dev-packages]
 
