@@ -1,5 +1,5 @@
 
-
+import os
 import requests
 import simplejson as json
 import base64
@@ -59,7 +59,11 @@ class GoogleVision(object):
         return keywords
 
 
-if __name__ == '__main__':
-    c = GoogleVision('AIzaSyAeQkvtT0VhSubV6O7Kb1_OlCHkGL-MaUY', 'http://acme.dzrho.com/dmm3bwsv3/2173_2_11_4_11_0_4a078007-f0c3-402e-8991-011c92a6ed84_False.jpg?mptdid=42813')
-    kw = c.keywords()
-    print(kw)
+# if __name__ == '__main__':
+#     apikey = os.environ.get('GOOGLE_VISION_API_KEY', None)
+#     if not apikey:
+#         return False
+
+#     c = GoogleVision(apikey, 'http://acme.dzrho.com/dmm3bwsv3/2173_2_11_4_11_0_4a078007-f0c3-402e-8991-011c92a6ed84_False.jpg?mptdid=42813')
+#     kw = c.keywords()
+#     print(kw)

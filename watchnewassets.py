@@ -16,7 +16,7 @@ import click
 import gv
 import dz
 
-GOOGLE_VISION_API_KEY = 'AIzaSyAeQkvtT0VhSubV6O7Kb1_OlCHkGL-MaUY'
+GOOGLE_VISION_API_KEY = os.environ.get('GOOGLE_VISION_API_KEY', None)
 DZ_CLIENT = None
 
 class Watcher:
