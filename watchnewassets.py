@@ -58,7 +58,8 @@ class Handler(FileSystemEventHandler):
     # @staticmethod
     def on_any_event(self, event):
         global DZ_CLIENT
-
+        global GOOGLE_VISION_API_KEY
+        
         if event.is_directory:
             return None
 
