@@ -44,6 +44,11 @@ class Client(object):
                 lastLevel = level
 
 
+    @property
+    def apikey(self):
+        return self.GetConnectionAccessKey()
+    
+
     def GetConnectionAccessKey(self):
         url = urljoin(self.BASE_URL, 'dmm3bwsv3/ConnectService.js')
         method ='LogOn'
