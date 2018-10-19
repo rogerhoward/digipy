@@ -8,6 +8,7 @@ requests = "*"
 click = "*"
 pip = "*"
 pyinstaller = "*"
+cached-property = "*"
 
 [dev-packages]
 
