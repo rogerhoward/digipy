@@ -58,12 +58,16 @@ def regenone(ctx, product):
     """
     Regenerate and repopulate all searches in a single product
     """
+
+    global products
     c = ctx.obj['client']
 
     # apikey = c.GetConnectionAccessKey()
     apikey = 'xoxkxkxx'
 
-    r = requests.request("GET", urljoin(c.BASE_URL, '/apiproxy/JobService.js'), params={'accesskey': apikey, 'method': 'GenerateAndPopulateAllSearchesForProduct', 'productGuid': product})
+    product_guid = products[product]
+
+    r = requests.request("GET", urljoin(c.BASE_URL, '/apiproxy/JobService.js'), params={'accesskey': apikey, 'method': 'GenerateAndPopulateAllSearchesForProduct', 'productGuid': product_guid})
     print(r.status_code, r.text)
 
     if r.status_code == 200:
