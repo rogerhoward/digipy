@@ -93,7 +93,13 @@ class Client(object):
         payload = {'updateXML': payload_xml, 'values': json.dumps(payload_values)}
 
         # Make POST request, passing accesskey as a query param and other payload as form encoded
-        r = requests.request("POST", url, data=payload, params={'accesskey': self.login})
+        while True:
+            try:
+                r = requests.request("POST", url, data=payload, params={'accesskey': self.login}, timeout=10)
+                break
+            except requests.exceptions.Timeout as err:
+                continue
+
         res = r.json()
         # print(res)
 
@@ -129,7 +135,13 @@ class Client(object):
         payload = {'updateXML': payload_xml, 'values': json.dumps(payload_values)}
 
         # Make POST request, passing accesskey as a query param and other payload as form encoded
-        r = requests.request("POST", url, data=payload, params={'accesskey': self.login})
+        while True:
+            try:
+                r = requests.request("POST", url, data=payload, params={'accesskey': self.login}, timeout=10)
+                break
+            except requests.exceptions.Timeout as err:
+                continue
+       
         res = r.json()
 
         # Return creeated term's ID if successful
@@ -209,7 +221,14 @@ class Asset(object):
 
 
         # Make POST request, passing accesskey as a query param and other payload as form encoded
-        r = requests.request("POST", url, data=payload, params={'accesskey': self.client.login})
+
+        while True:
+            try:
+                r = requests.request("POST", url, data=payload, params={'accesskey': self.client.login}, timeout=10)
+                break
+            except requests.exceptions.Timeout as err:
+                continue
+        
         res = r.json()
         print(res)
 
@@ -248,7 +267,13 @@ class Asset(object):
 
 
         # Make POST request, passing accesskey as a query param and other payload as form encoded
-        r = requests.request("POST", url, data=payload, params={'accesskey': self.client.login})
+        while True:
+            try:
+                r = requests.request("POST", url, data=payload, params={'accesskey': self.client.login}, timeout=10)
+                break
+            except requests.exceptions.Timeout as err:
+                continue
+
         res = r.json()
         print(res)
 
