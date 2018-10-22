@@ -5,6 +5,8 @@ import click
 from urllib.parse import urljoin
 import requests
 
+baseurl_default = 'https://dam.acme.com'
+
 products = {'DC': '3AD2C82D-EE80-40CD-A404-8D1AD124639D',
             'MM': 'F10ABF14-6FB1-4515-A16A-0C6C02376989',
             'ACCC': '2350F493-D4AB-48AE-AC07-562242104035',
@@ -22,10 +24,15 @@ def getEndpoint(url, params):
 
 @click.group()
 @click.pass_context
-@click.option('--baseurl', required=True, prompt='Please enter the base URL for a Digizuite DAM Center', default='https://damcenter.com', help='Base URL of the Digizuite DAM Center.')
+@click.option('--baseurl', required=True, help='Base URL of the Digizuite DAM Center.', prompt='Enter a URL to a DAM Center instance', default=baseurl_default)
 @click.option('--username', required=True, prompt='Please enter the API username', default='System', help='API username')
 @click.option('--password', required=True, prompt='Please enter the API user password', help='API password.')
 def cli(ctx, baseurl, username, password):
+    #Check for defaults
+    if baseurl == baseurl_default:
+        print('Please enter a non-default value for baseurl')
+        return False
+
     dzClient = dz.Client(baseurl, username, password)
     ctx.ensure_object(dict)
     ctx.obj['client'] = dzClient
